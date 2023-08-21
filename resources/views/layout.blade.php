@@ -10,7 +10,6 @@
 </head>
 <body>
     <header>
-        <!-- Seu cabeçalho aqui -->
     </header>
 
     <main>
@@ -20,8 +19,6 @@
     <footer>
 
     </footer>
-
-    <!-- Inclua seus scripts JavaScript aqui -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
