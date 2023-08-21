@@ -37,21 +37,30 @@ class ClienteController extends Controller
     }
 
     public function store(Request $request) {
-    // verificar se existe já um cliente com o CPF informado, se não existir, criar um novo cliente
-    $cliente = Cliente::where('cpf', $request->cpf)->first();
-    if ($cliente) {
-        return response()->json(['message' => 'Cliente já cadastrado!'], 400);
-    } else {
-        $cliente = Cliente::create($request->all());
-        return redirect()->route('clientes.index'); // Redirecionar para a view cliente.blade.php
-    }
-}
+        // Verificar se existe já um cliente com o CPF informado
+        // Remover caracteres não numéricos do CPF
+        $cpf = preg_replace('/[^0-9]/', '', $request->input('cpf'));
 
+        $cliente = Cliente::where('cpf', $cpf)->first();
+        if ($cliente) {
+            return response()->json(['message' => 'Cliente já cadastrado!'], 400);
+        } else {
+            // Usar o CPF limpo na criação do cliente
+            $request->merge(['cpf' => $cpf]);
+            $cliente = Cliente::create($request->all());
+            return redirect()->route('clientes.index'); // Redirecionar para a view cliente.blade.php
+        }
+    }
 
     public function update(Request $request, $id) {
-        // verificar se existe um cliente com esse id se não tiver retornar erro se tiver atualizar o cliente
+        // Verificar se existe um cliente com esse id
         $cliente = Cliente::find($id);
         if ($cliente) {
+            // Remover caracteres não numéricos do CPF
+            $cpf = preg_replace('/[^0-9]/', '', $request->input('cpf'));
+
+            // Atualizar o cliente usando o CPF limpo
+            $request->merge(['cpf' => $cpf]);
             $cliente->update($request->all());
             return $cliente;
         } else {
