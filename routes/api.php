@@ -17,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// rota teste
+Route::get('/teste', function () {
+    return response()->json(['message' => 'Hello World!'], 200);
+});
+
+// Rota get para visualizar os clientes do controller
+Route::get('/cliente', 'App\Http\Controllers\ClienteController@index');
+Route::get('/cliente/{id}', 'App\Http\Controllers\ClienteController@show');
+Route::post('/cliente', 'App\Http\Controllers\ClienteController@store');
+Route::put('/cliente/{id}', 'App\Http\Controllers\ClienteController@update');
+Route::delete('/cliente/{id}', 'App\Http\Controllers\ClienteController@destroy');
