@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="d-flex">
-        <img src="{{ asset('upd8logo.png') }}" alt="upd8logo" class="img-fluid" style="max-width: 150px;">
+        <img src="{{ asset('ijh8logo.png') }}" alt="ijh8logo" class="img-fluid mb-4" style="max-width: 200px;">
     </div>
         {{-- Formulário de Cadastro de Cliente --}}
         <div class="mb-4">
@@ -192,6 +192,7 @@
 
         popularEstados();
 
+        // não exibir erro do datatable
         const dataTable = $('#cliente-table').DataTable({
             "processing": false,
             "serverSide": true,
@@ -224,6 +225,9 @@
                 },
             ],
         });
+
+        $.fn.dataTable.ext.errMode = 'none';
+
             // Adicionar filtros de busca individuais
             $('#searchNome, #searchCpf, #searchDataNascimento, #searchEstado, #searchCidade, #searchSexo').on('keyup', function() {
                 dataTable.column($(this).parent().index() + ':visible').search(this.value).draw();
