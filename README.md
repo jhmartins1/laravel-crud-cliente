@@ -11,13 +11,19 @@
     git clone git@github.com:jhmartins1/laravel-crud-cliente.git
   ```
    
-3. Execute o comando a seguir para instalar as dependencias do projeto
+2. Execute o comando a seguir para instalar as dependencias do projeto
 
   ```sh-session
     composer install
   ```
 
-3. Execute o comando a seguir para iniciar o projeto
+3. Altere o arquivo .env.example para .env e gere uma key com o comando
+
+  ```sh-session
+    php artisan key:generate
+  ```
+
+4. Execute o comando a seguir para iniciar o projeto
 
   ```sh-session
     php artisan serve
